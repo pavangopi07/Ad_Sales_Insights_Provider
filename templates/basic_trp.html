@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ad sales Insights provider</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Ad sales Insights Provider</h1>
+        <form action='/tv_trp_chart' method="post" class="class1">
+            <label for="dropdown">Choose an option to display</label>
+            <select id="dropdown" name="dropdown">
+                <option value="" selected disabled>select an option</option>
+                <option value="tv trp">TV TRP</option>
+            </select>
+            <input type="submit" value="Submit">
+        </form>
+        {% if chart_data %}
+    <div id="plot"></div>
+    <script>
+        var data = {{ chart_data|safe }};
+        Plotly.newPlot('plot', data);
+    </script>
+    {% endif %}
+    {% if chart_data %}
+    <form method="POST" action="/more_insights">
+        <br>
+        <br>
+        <input type="submit" value="find more insights">
+    </form>
+    {% endif %}
+    </div>
+</body>
+
+</html>

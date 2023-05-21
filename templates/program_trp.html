@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ad sales Insights provider</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Ad sales Insights Provider</h1>
+        <form action='/program_trp_chart' method="post" class="class1">
+            <label for="dropdown">select a program</label>
+            <select id="dropdown" name="dropdown">
+                <option value="" selected disabled>Select an option</option>
+                <option value="Football Night in America">Football Night in America</option>
+                <option value="NCIS: Los Angeles">NCI:Los Angles</option>
+                <option value="Survivor">Survivor</option>
+                <option value="This Is Us">This Is Us</option>
+                <option value="Next Level Chef">Next Level Chef</option>
+                <option value="Animal Control">Animal Control</option>
+                <option value="FBI">FBI</option>
+                <option value="Manifest">Manifest</option>
+                <option value="The Good Doctor">The Good Doctor</option>
+                <option value="Mid Wicket Tales">Mid Wicket Tales</option>
+                <option value="A Million Little Things">A Million Little Things</option>
+                <option value="To Tell the Truth">To Tell the Truth</option>
+                <option value="The Masked Singer">The Masked Singer</option>
+                <option value="Magnum P.I.">Magnum P.I.</option>
+                <option value="Chicago Fire">Chicago Fire</option>
+                <option value="Grey's Anatomy">Grey's Anatomy</option>
+                <option value="The Bachelor">The Bachelor</option>
+                <option value="Call Me Kat">Call Me Kat</option>
+                <option value="Law & Order: SVU">Law & Order: SVU</option>
+                <option value="Shark Tank">Shark Tank</option>
+            </select>
+            <input type="submit" value="Submit">
+        </form>
+    {% if chart_data %}
+    <div id="plot"></div>
+    <script>
+        var data = {{ chart_data|safe }};
+        Plotly.newPlot('plot', data);
+    </script>
+    {% endif %}
+    <br>
+    <br>
+        {{ channel_txt }}<br>
+        {{ day_txt }}<br>
+        {{ time_txt }}<br>
+        {{ viewership_txt }}<br>
+        {{ duration_txt }}<br>
+    </div>
+</body>
+
+</html>
